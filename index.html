@@ -1,0 +1,2687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artie's Express - Glendale, CA | Flame-Crafted Fast Casual</title>
+  <meta name="description" content="Artie's Express in Glendale, California. Fresh flame-grilled artisan smash burgers, Mediterranean skewers, hand-breaded chicken tenders, and swift online ordering." />
+  <meta property="og:title" content="Artie's Express - Glendale, CA | Flame-Crafted Fast Casual" />
+  <meta property="og:description" content="Modern fast-casual dining in Glendale, California. Fresh flame-grilled specialties, artisan burgers, crispy tenders, and swift online pickup & delivery." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fonts: Google Fonts Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-base: #0B0D12;
+      --bg-surface: #131722;
+      --bg-surface-elevated: #1B2130;
+      --bg-surface-hover: #232B3E;
+      --text-main: #F4F6FB;
+      --text-muted: #94A3B8;
+      --text-subtle: #64748B;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(255, 255, 255, 0.2);
+      --flame-amber: #FF6B00;
+      --flame-glow: #FF8800;
+      --flame-deep: #D9480F;
+      --flame-light: #FFE8CC;
+      --accent-green: #10B981;
+      --accent-gold: #F59E0B;
+      --font-display: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --container-max: 1240px;
+      --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      overflow-x: hidden;
+      line-height: 1.6;
+      background: radial-gradient(circle at 50% 0%, #1A2133 0%, var(--bg-base) 45%);
+      min-height: 100vh;
+    }
+
+    /* Strict Typography Scale & Rules */
+    h1, h2, h3, h4, .font-display {
+      font-family: var(--font-display);
+      text-wrap: balance;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      text-wrap: pretty;
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      border-radius: 0.625rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s var(--transition-smooth);
+      white-space: nowrap;
+      border: 1px solid transparent;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--flame-glow);
+      outline-offset: 2px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--flame-amber) 0%, var(--flame-deep) 100%);
+      color: #FFFFFF;
+      box-shadow: 0 4px 20px rgba(255, 107, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #FF7B1A 0%, #E65100 100%);
+      box-shadow: 0 6px 28px rgba(255, 107, 0, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--bg-surface-elevated);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-surface-hover);
+      border-color: var(--border-focus);
+      transform: translateY(-1px);
+    }
+
+    .btn-sm {
+      padding: 0.45rem 0.9rem;
+      font-size: 0.8125rem;
+      border-radius: 0.5rem;
+    }
+
+    /* Section Styling */
+    section {
+      padding: 5.5rem 0;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 3.5rem 0;
+      }
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--flame-amber);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      color: #FFFFFF;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.0625rem;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* Top Bar - Strict 3-zone contract */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(11, 13, 18, 0.85);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: background 0.3s ease;
+    }
+
+    .topbar-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4.5rem;
+    }
+
+    /* Zone 1: Single text element wordmark */
+    .brand-wordmark {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #FFFFFF;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .brand-wordmark span {
+      color: var(--flame-amber);
+    }
+
+    /* Zone 2: 4-6 clean text navigation links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      transition: color 0.15s ease;
+      position: relative;
+      padding: 0.25rem 0;
+    }
+
+    .nav-link:hover {
+      color: #FFFFFF;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--flame-amber);
+      transition: width 0.2s var(--transition-smooth);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Zone 3: 1-2 primary actions */
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cart-trigger-btn {
+      position: relative;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 0.6rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .cart-trigger-btn:hover {
+      background: var(--bg-surface-elevated);
+      border-color: var(--border-focus);
+    }
+
+    .cart-badge {
+      background: var(--flame-amber);
+      color: #FFFFFF;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      min-width: 1.25rem;
+      height: 1.25rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 0.35rem;
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: #FFFFFF;
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+      cursor: pointer;
+    }
+
+    /* Mobile Drawer */
+    .mobile-nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .mobile-nav-overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .mobile-nav-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 85%;
+      max-width: 320px;
+      background: var(--bg-surface);
+      border-left: 1px solid var(--border-subtle);
+      z-index: 101;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      transform: translateX(100%);
+      transition: transform 0.3s var(--transition-smooth);
+    }
+
+    .mobile-nav-panel.active {
+      transform: translateX(0);
+    }
+
+    .mobile-nav-close {
+      align-self: flex-end;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      list-style: none;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1.5rem;
+    }
+
+    .mobile-nav-links a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 4.5rem 0 5rem 0;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .hero-badge-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-green);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-green);
+      animation: pulse-glow 2s infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.15); }
+    }
+
+    .hero-headline {
+      font-size: clamp(2.5rem, 4.5vw, 3.75rem);
+      line-height: 1.08;
+      color: #FFFFFF;
+      margin-bottom: 1.25rem;
+      font-weight: 800;
+    }
+
+    .hero-headline .highlight {
+      color: var(--flame-amber);
+      background: linear-gradient(135deg, #FFA94D 0%, #FF6B00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-description {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      max-width: 520px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-proof-strip {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .proof-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .proof-val {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    .proof-lbl {
+      font-size: 0.75rem;
+      color: var(--text-subtle);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-visual-card {
+      position: relative;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      background: var(--bg-surface);
+      aspect-ratio: 16/10;
+    }
+
+    .hero-visual-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s var(--transition-smooth);
+    }
+
+    .hero-visual-card:hover img {
+      transform: scale(1.025);
+    }
+
+    .hero-visual-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(11, 13, 18, 0.85) 100%);
+      pointer-events: none;
+    }
+
+    .hero-floating-tag {
+      position: absolute;
+      bottom: 1.25rem;
+      left: 1.25rem;
+      right: 1.25rem;
+      background: rgba(19, 23, 34, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 0.875rem;
+      padding: 0.875rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .floating-dish-info h4 {
+      font-size: 0.9375rem;
+      color: #FFFFFF;
+      margin-bottom: 0.15rem;
+    }
+
+    .floating-dish-info p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .floating-dish-price {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--flame-amber);
+      font-size: 1.125rem;
+    }
+
+    /* Fast-Food Comparison Banner: Why Glendale chooses Artie's */
+    .comparison-section {
+      background: linear-gradient(180deg, var(--bg-base) 0%, #111520 50%, var(--bg-base) 100%);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 4.5rem 0;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .comparison-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 1rem;
+      padding: 1.75rem;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .comparison-card.highlighted {
+      border-color: rgba(255, 107, 0, 0.4);
+      background: linear-gradient(180deg, #1B2130 0%, #151A26 100%);
+      box-shadow: 0 10px 30px rgba(255, 107, 0, 0.1);
+    }
+
+    .comparison-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-focus);
+    }
+
+    .comparison-icon {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 0.625rem;
+      background: var(--bg-surface-elevated);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      color: var(--flame-amber);
+      font-size: 1.25rem;
+    }
+
+    .comparison-card h3 {
+      font-size: 1.1875rem;
+      color: #FFFFFF;
+      margin-bottom: 0.5rem;
+    }
+
+    .comparison-card p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .comparison-competitor-note {
+      margin-top: 1rem;
+      padding-top: 0.875rem;
+      border-top: 1px dashed var(--border-subtle);
+      font-size: 0.75rem;
+      color: var(--text-subtle);
+    }
+
+    /* Menu Section & Category Controls */
+    .menu-controls-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    /* Category Buttons (Segmented Filter Bar) */
+    .category-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      padding: 0.375rem;
+      border-radius: 0.75rem;
+      overflow-x: auto;
+      max-width: 100%;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .category-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .category-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.6rem 1.15rem;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .category-btn:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .category-btn.active {
+      background: var(--flame-amber);
+      color: #FFFFFF;
+      box-shadow: 0 2px 10px rgba(255, 107, 0, 0.3);
+    }
+
+    /* Dietary secondary filter */
+    .subfilter-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.8125rem;
+      color: var(--text-subtle);
+    }
+
+    .subfilter-btn {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 0.3rem 0.75rem;
+      border-radius: 0.375rem;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-family: var(--font-body);
+      transition: all 0.15s ease;
+    }
+
+    .subfilter-btn.active {
+      border-color: var(--flame-amber);
+      color: var(--flame-amber);
+      background: rgba(255, 107, 0, 0.08);
+    }
+
+    /* Food Menu Grid */
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+
+    @media (max-width: 480px) {
+      .food-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .food-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 1rem;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s var(--transition-smooth), border-color 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .food-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-focus);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+    }
+
+    .food-img-wrap {
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      position: relative;
+      background: #181C26;
+    }
+
+    .food-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s var(--transition-smooth);
+    }
+
+    .food-card:hover .food-img-wrap img {
+      transform: scale(1.05);
+    }
+
+    .food-badge-overlay {
+      position: absolute;
+      top: 0.875rem;
+      left: 0.875rem;
+      background: rgba(11, 13, 18, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 0.375rem;
+    }
+
+    .food-badge-overlay.signature {
+      background: rgba(217, 72, 15, 0.9);
+      color: #FFFFFF;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .food-card-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .food-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--text-subtle);
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .food-card-title {
+      font-size: 1.25rem;
+      color: #FFFFFF;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .food-card-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      line-height: 1.5;
+      flex-grow: 1;
+    }
+
+    .food-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .food-card-price {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    .food-add-btn {
+      background: var(--bg-surface-elevated);
+      color: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .food-add-btn:hover {
+      background: var(--flame-amber);
+      border-color: var(--flame-amber);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3);
+    }
+
+    /* Glendale Storefront & Experience Section */
+    .experience-section {
+      background: #0E1118;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .experience-image-wrap {
+      border-radius: 1.25rem;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border-subtle);
+      aspect-ratio: 16/10;
+    }
+
+    .experience-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .experience-perks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .perk-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+    }
+
+    .perk-box h4 {
+      font-size: 0.9375rem;
+      color: #FFFFFF;
+      margin-bottom: 0.25rem;
+    }
+
+    .perk-box p {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Customer Reviews Section */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .review-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 1rem;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-focus);
+    }
+
+    .review-stars {
+      color: var(--accent-gold);
+      font-size: 0.9375rem;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .review-quote {
+      font-size: 0.9375rem;
+      color: var(--text-main);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      font-style: normal;
+    }
+
+    .review-author-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .author-avatar {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background: var(--bg-surface-elevated);
+      color: var(--flame-amber);
+      font-weight: 700;
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .author-info h4 {
+      font-size: 0.875rem;
+      color: #FFFFFF;
+    }
+
+    .author-info p {
+      font-size: 0.75rem;
+      color: var(--text-subtle);
+    }
+
+    /* Location & Hours Section */
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+
+    .location-info-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 1rem;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .info-group {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .info-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      background: var(--bg-surface-elevated);
+      color: var(--flame-amber);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.125rem;
+    }
+
+    .info-text h4 {
+      font-size: 1rem;
+      color: #FFFFFF;
+      margin-bottom: 0.25rem;
+    }
+
+    .info-text p, .info-text a {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      text-decoration: none;
+    }
+
+    .info-text a:hover {
+      color: var(--flame-amber);
+    }
+
+    /* Hours table */
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    .hours-table tr {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .hours-table td {
+      padding: 0.5rem 0;
+      color: var(--text-muted);
+    }
+
+    .hours-table td:last-child {
+      text-align: right;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .hours-table tr.today td {
+      color: var(--flame-amber);
+      font-weight: 700;
+    }
+
+    /* Map Box / Embed Simulation */
+    .map-preview-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 1rem;
+      overflow: hidden;
+      min-height: 380px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .map-header {
+      padding: 1rem 1.25rem;
+      background: var(--bg-surface-elevated);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .map-header-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #FFFFFF;
+    }
+
+    .map-canvas-area {
+      flex-grow: 1;
+      background: #1A1F2C;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: 
+        radial-gradient(#2E384D 1.5px, transparent 1.5px),
+        linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 24px 24px, 48px 48px, 48px 48px;
+    }
+
+    .map-pin-pulse {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .pin-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--flame-amber);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      box-shadow: 0 0 25px rgba(255, 107, 0, 0.6);
+      animation: bounce-pin 2.5s infinite;
+    }
+
+    @keyframes bounce-pin {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .pin-label {
+      background: #11141D;
+      border: 1px solid var(--border-subtle);
+      padding: 0.4rem 0.8rem;
+      border-radius: 0.375rem;
+      color: #FFFFFF;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-top: 0.5rem;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    .map-controls-row {
+      padding: 1rem 1.25rem;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    /* Contact Form & VIP Club */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+
+    .contact-form-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 1rem;
+      padding: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.375rem;
+    }
+
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: 0.5rem;
+      color: #FFFFFF;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      transition: all 0.2s ease;
+    }
+
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      outline: none;
+      border-color: var(--flame-amber);
+      box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.15);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: #080A0E;
+      border-top: 1px solid var(--border-subtle);
+      padding: 4rem 0 2rem 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 2.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .footer-brand h3 {
+      font-size: 1.5rem;
+      color: #FFFFFF;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 320px;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-col h4 {
+      font-size: 0.875rem;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.15s ease;
+    }
+
+    .footer-links a:hover {
+      color: #FFFFFF;
+    }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8125rem;
+      color: var(--text-subtle);
+    }
+
+    /* Cart Slide-Over Drawer */
+    .cart-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 120;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .cart-drawer-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 440px;
+      background: #11141D;
+      border-left: 1px solid var(--border-subtle);
+      z-index: 130;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.3s var(--transition-smooth);
+      box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .cart-drawer.open {
+      transform: translateX(0);
+    }
+
+    .cart-header {
+      padding: 1.25rem 1.5rem;
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cart-header h3 {
+      font-size: 1.125rem;
+      color: #FFFFFF;
+    }
+
+    .cart-close-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.25rem;
+      padding: 0.25rem;
+    }
+
+    .cart-body {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cart-empty {
+      text-align: center;
+      padding: 4rem 1rem;
+      color: var(--text-muted);
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.875rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 0.75rem;
+    }
+
+    .cart-item-info h4 {
+      font-size: 0.9375rem;
+      color: #FFFFFF;
+    }
+
+    .cart-item-info p {
+      font-size: 0.8125rem;
+      color: var(--text-subtle);
+    }
+
+    .cart-item-stepper {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg-surface-elevated);
+      border-radius: 0.375rem;
+      padding: 0.2rem;
+    }
+
+    .step-btn {
+      background: transparent;
+      border: none;
+      color: #FFFFFF;
+      width: 1.5rem;
+      height: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .step-qty {
+      font-size: 0.875rem;
+      font-weight: 600;
+      min-width: 1.25rem;
+      text-align: center;
+    }
+
+    .cart-footer {
+      padding: 1.5rem;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .cart-summary-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .cart-summary-line.total {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border-subtle);
+      margin-top: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Modal for Food Customization */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 150;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 1.25rem;
+      width: 100%;
+      max-width: 520px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+      transform: scale(0.96);
+      transition: transform 0.25s var(--transition-smooth);
+    }
+
+    .modal-overlay.open .modal-card {
+      transform: scale(1);
+    }
+
+    .modal-img-banner {
+      width: 100%;
+      height: 220px;
+      position: relative;
+      background: #181C26;
+    }
+
+    .modal-img-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-close-icon {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(11, 13, 18, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #FFFFFF;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .modal-content {
+      padding: 1.75rem;
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: #1B2130;
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 107, 0, 0.4);
+      padding: 0.875rem 1.25rem;
+      border-radius: 0.625rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      font-size: 0.875rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      animation: slide-up-toast 0.3s var(--transition-smooth);
+      pointer-events: auto;
+    }
+
+    @keyframes slide-up-toast {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Mobile Sticky Bottom Order Bar (Strictly <15% of viewport) */
+    .mobile-sticky-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px; /* <10% of standard phone height */
+      background: rgba(17, 20, 29, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border-subtle);
+      z-index: 90;
+      padding: 0.5rem 1rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 768px) {
+      .topbar-nav { display: none; }
+      .mobile-menu-toggle { display: block; }
+      .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .experience-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .comparison-grid { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .location-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .mobile-sticky-bar { display: flex; }
+      body { padding-bottom: 60px; } /* Prevent bottom content overlap */
+    }
+
+    @media (max-width: 520px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .hero-proof-strip { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Strict Top Bar (One Row, Three Zones) -->
+  <header class="topbar">
+    <div class="container topbar-container">
+      <!-- Zone 1: Single text element wordmark -->
+      <a href="#hero" class="brand-wordmark" aria-label="Artie's Express Home">
+        Artie's <span>Express</span>
+      </a>
+
+      <!-- Zone 2: 4-6 clean text navigation links -->
+      <nav class="topbar-nav" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="#menu" class="nav-link">Menu</a></li>
+          <li><a href="#comparison" class="nav-link">The Difference</a></li>
+          <li><a href="#experience" class="nav-link">Glendale Story</a></li>
+          <li><a href="#reviews" class="nav-link">Reviews</a></li>
+          <li><a href="#location" class="nav-link">Location & Hours</a></li>
+        </ul>
+      </nav>
+
+      <!-- Zone 3: 1-2 primary actions -->
+      <div class="topbar-actions">
+        <button class="cart-trigger-btn" id="openCartBtn" aria-label="View Cart">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          <span>Order</span>
+          <span class="cart-badge tabular-nums" id="cartCount">0</span>
+        </button>
+        <a href="#menu" class="btn btn-primary btn-sm">Order Online</a>
+        <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-nav-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-nav-panel" id="mobilePanel">
+    <button class="mobile-nav-close" id="closeMobileNav" aria-label="Close menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <a href="#hero" class="brand-wordmark">Artie's <span>Express</span></a>
+    <ul class="mobile-nav-links">
+      <li><a href="#menu" class="mobile-link">Full Menu</a></li>
+      <li><a href="#comparison" class="mobile-link">Why Artie's</a></li>
+      <li><a href="#experience" class="mobile-link">Glendale Story</a></li>
+      <li><a href="#reviews" class="mobile-link">Guest Reviews</a></li>
+      <li><a href="#location" class="mobile-link">Hours & Directions</a></li>
+      <li><a href="#contact" class="mobile-link">Contact & Catering</a></li>
+    </ul>
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 0.75rem;">
+      <a href="#menu" class="btn btn-primary mobile-link" style="width: 100%;">Order Express Pickup</a>
+      <a href="tel:8185550198" class="btn btn-secondary" style="width: 100%;">Call (818) 555-0198</a>
+    </div>
+  </aside>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge-wrap">
+            <span class="hero-status-dot"></span>
+            <span id="liveStatusText">Open Now in Glendale · Express Pickup in 12–15 min</span>
+          </div>
+          <h1 class="hero-headline">
+            Glendale’s <span class="highlight">Flame-Crafted</span> Fast Casual.
+          </h1>
+          <p class="hero-description">
+            Searing heat, prime smash patties, Mediterranean flame skewers, and scratch-made garlic dips. Fast-casual speed without fast-food shortcuts.
+          </p>
+          <div class="hero-actions">
+            <a href="#menu" class="btn btn-primary">
+              <span>Start Pickup Order</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </a>
+            <a href="#experience" class="btn btn-secondary">Our Glendale Story</a>
+          </div>
+          <div class="hero-proof-strip">
+            <div class="proof-item">
+              <span class="proof-val tabular-nums">4.9 ★</span>
+              <span class="proof-lbl">1,400+ Glendale Diners</span>
+            </div>
+            <div class="proof-item">
+              <span class="proof-val tabular-nums">100%</span>
+              <span class="proof-lbl">Fresh Never Frozen</span>
+            </div>
+            <div class="proof-item">
+              <span class="proof-val tabular-nums">12 Min</span>
+              <span class="proof-lbl">Avg. Pickup Time</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-visual-card">
+            <img src="/src/assets/images/hero_arties_signature_1790782619909.jpg" 
+                 alt="Artie's Express Signature Double Flame Cheeseburger and Fries" 
+                 loading="eager"
+                 referrerpolicy="no-referrer"
+                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=80';">
+            <div class="hero-visual-overlay"></div>
+            <div class="hero-floating-tag">
+              <div class="floating-dish-info">
+                <h4>Artie's Flame Double</h4>
+                <p>Aged sharp cheddar, caramelized onions, smoked house sauce</p>
+              </div>
+              <div class="floating-dish-price tabular-nums">$13.95</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison / Difference Section (Artie's vs Standard Glendale Competitors) -->
+  <section class="comparison-section" id="comparison">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">The Artie's Standard</span>
+        <h2 class="section-title">Why Glendale Chooses Artie's</h2>
+        <p class="section-subtitle">
+          Built for locals who want the speed of fast-food chains with the ingredient integrity of a neighborhood chef counter.
+        </p>
+      </div>
+
+      <div class="comparison-grid">
+        <div class="comparison-card">
+          <div class="comparison-icon">🔥</div>
+          <h3>Open Flame & Searing Cast Iron</h3>
+          <p>We grill over high-temperature fire and sear custom brisket-chuck blends to order. No steam-table warming trays or microwave warming.</p>
+          <div class="comparison-competitor-note">
+            <span>Vs. Standard Fast Food:</span> Cooked in advance under heat lamps.
+          </div>
+        </div>
+
+        <div class="comparison-card highlighted">
+          <div class="comparison-icon">🌿</div>
+          <h3>Whole Ingredients & Daily Prep</h3>
+          <p>Free-range chicken breast, California produce hand-chopped every morning, and artisanal brioche baked locally in Los Angeles County.</p>
+          <div class="comparison-competitor-note">
+            <span>Vs. National Chains:</span> Pre-breaded frozen patties and mass-distributed shelf-stable produce.
+          </div>
+        </div>
+
+        <div class="comparison-card">
+          <div class="comparison-icon">⚡</div>
+          <h3>Sub-15 Minute Digital Ordering</h3>
+          <p>Order seamlessly from your phone while shopping at Glendale Galleria or Americana at Brand. Hot and packed the moment you step through our doors.</p>
+          <div class="comparison-competitor-note">
+            <span>Vs. Slow Counter Waits:</span> 25-minute drive-thru queues or soggy delivery bag delays.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Food Menu Section -->
+  <section class="menu-section" id="menu">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">Chef-Crafted Menu</span>
+        <h2 class="section-title">Explore Artie's Express Menu</h2>
+        <p class="section-subtitle">
+          Every item is prepared from scratch when ordered. Click any card to customize sauces, sides, and extras.
+        </p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="menu-controls-wrap">
+        <div class="category-bar" role="tablist">
+          <button class="category-btn active" data-category="all" role="tab">All Menu</button>
+          <button class="category-btn" data-category="burgers" role="tab">Artisan Burgers</button>
+          <button class="category-btn" data-category="skewers" role="tab">Flame Skewers</button>
+          <button class="category-btn" data-category="tenders" role="tab">Crispy Tenders</button>
+          <button class="category-btn" data-category="sides" role="tab">Sides & Fries</button>
+          <button class="category-btn" data-category="drinks" role="tab">Craft Drinks</button>
+        </div>
+
+        <div class="subfilter-bar">
+          <span>Dietary preference:</span>
+          <button class="subfilter-btn active" data-diet="all">All Items</button>
+          <button class="subfilter-btn" data-diet="signature">★ Chef Signatures</button>
+          <button class="subfilter-btn" data-diet="halal">Halal-Friendly</button>
+        </div>
+      </div>
+
+      <!-- Food Items Grid -->
+      <div class="food-grid" id="foodGrid">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Glendale Dining Experience / Story Section -->
+  <section class="experience-section" id="experience">
+    <div class="container">
+      <div class="experience-grid">
+        <div class="experience-image-wrap">
+          <img src="/src/assets/images/glendale_storefront_interior_1790782669092.jpg" 
+               alt="Artie's Express Glendale Restaurant Dining Counter and Open Kitchen"
+               loading="lazy"
+               referrerpolicy="no-referrer"
+               onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80';">
+        </div>
+
+        <div class="experience-content">
+          <span class="section-kicker">Born in Glendale</span>
+          <h2 class="section-title">Fast Casual Elevated for Our Community</h2>
+          <p class="section-subtitle" style="text-align: left; margin: 0 0 1.5rem 0;">
+            Founded right here in Glendale, Artie’s Express was created to fill a genuine dining void between greasy chain drive-thrus and expensive sit-down steakhouses.
+          </p>
+          <p style="color: var(--text-muted); font-size: 0.9375rem; line-height: 1.6; margin-bottom: 2rem;">
+            Whether you’re grabbing lunch during your Brand Blvd workday, catching dinner before an Alex Theatre show, or ordering pickup after weekend shopping at Americana, we deliver culinary craftsmanship in under 15 minutes.
+          </p>
+
+          <div class="experience-perks">
+            <div class="perk-box">
+              <h4>Express Dedicated Counter</h4>
+              <p>Skip the ordering line entirely when you order online through our digital portal.</p>
+            </div>
+            <div class="perk-box">
+              <h4>Validated 90-Min Parking</h4>
+              <p>Ample surface and garage parking directly behind our dining room on California Ave.</p>
+            </div>
+            <div class="perk-box">
+              <h4>Heated Outdoor Patio</h4>
+              <p>Enjoy Glendale's sunny days and cool evenings on our shaded sidewalk patio.</p>
+            </div>
+            <div class="perk-box">
+              <h4>Scratch-Made Daily Sauces</h4>
+              <p>Truffle aioli, fiery habanero crunch, smoked roasted garlic, and tangy herb ranch.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Reviews Section -->
+  <section class="reviews-section" id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">Verified Guest Feedback</span>
+        <h2 class="section-title">Glendale's Verdict on Artie's</h2>
+        <p class="section-subtitle">
+          Over 1,400 five-star reviews from neighbors across Kenneth Village, Downtown Glendale, and Verdugo Woodlands.
+        </p>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">
+              “Hands down blows Five Guys out of the water. The smash patty edges are crispy and lacy, the truffle sauce is rich, and the brioche doesn't get soggy. My new Glendale regular lunch spot.”
+            </p>
+          </div>
+          <div class="review-author-row">
+            <div class="author-avatar">AM</div>
+            <div class="author-info">
+              <h4>Armen M.</h4>
+              <p>Downtown Glendale · Ordered Truffle Smash Burger</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">
+              “The chicken skewers are incredible—charred flavor from the flame, juicy meat, and that garlic toum dip is addictive. Ordered online on my phone and it was ready at the counter in 11 minutes flat.”
+            </p>
+          </div>
+          <div class="review-author-row">
+            <div class="author-avatar">SL</div>
+            <div class="author-info">
+              <h4>Sarah L.</h4>
+              <p>Kenneth Village · Ordered Flame Chicken Skewer Platter</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-quote">
+              “We stopped going to Chick-fil-A across the street because Artie's buttermilk tenders are actually seasoned with real crunch and zero oily residue. The loaded parmesan waffle fries are mandatory.”
+            </p>
+          </div>
+          <div class="review-author-row">
+            <div class="author-avatar">DK</div>
+            <div class="author-info">
+              <h4>David K.</h4>
+              <p>Verdugo Woodlands · Ordered Crispy Buttermilk Tenders</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location & Operating Hours Section -->
+  <section class="location-section" id="location">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">Visit Us In Person</span>
+        <h2 class="section-title">Glendale Location & Hours</h2>
+        <p class="section-subtitle">
+          Conveniently located on North Brand Boulevard in Downtown Glendale, steps from the Alex Theatre.
+        </p>
+      </div>
+
+      <div class="location-grid">
+        <!-- Info card with hours -->
+        <div class="location-info-card">
+          <div class="info-group">
+            <div class="info-icon">📍</div>
+            <div class="info-text">
+              <h4>Address</h4>
+              <p>238 N Brand Blvd, Glendale, CA 91203</p>
+              <p style="font-size: 0.8125rem; color: var(--text-subtle); margin-top: 0.25rem;">
+                Cross streets: E California Ave & N Brand Blvd (Free 90-min validated garage parking)
+              </p>
+            </div>
+          </div>
+
+          <div class="info-group">
+            <div class="info-icon">📞</div>
+            <div class="info-text">
+              <h4>Direct Counter Phone</h4>
+              <p><a href="tel:8185550198">(818) 555-0198</a></p>
+              <p style="font-size: 0.8125rem; color: var(--text-subtle);">Direct line for pickup status and catering inquiries</p>
+            </div>
+          </div>
+
+          <div class="info-group" style="flex-direction: column;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+              <span style="color: var(--flame-amber); font-weight: 700;">🕒</span>
+              <h4 style="font-size: 1rem; color: #FFFFFF;">Operating Hours</h4>
+            </div>
+            <table class="hours-table">
+              <tbody>
+                <tr id="row-mon"><td>Monday</td><td class="tabular-nums">11:00 AM – 10:00 PM</td></tr>
+                <tr id="row-tue"><td>Tuesday</td><td class="tabular-nums">11:00 AM – 10:00 PM</td></tr>
+                <tr id="row-wed"><td>Wednesday</td><td class="tabular-nums">11:00 AM – 10:00 PM</td></tr>
+                <tr id="row-thu"><td>Thursday</td><td class="tabular-nums">11:00 AM – 10:30 PM</td></tr>
+                <tr id="row-fri"><td>Friday</td><td class="tabular-nums">11:00 AM – 11:30 PM</td></tr>
+                <tr id="row-sat"><td>Saturday</td><td class="tabular-nums">11:00 AM – 11:30 PM</td></tr>
+                <tr id="row-sun"><td>Sunday</td><td class="tabular-nums">11:30 AM – 9:30 PM</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Simulated Interactive Map Preview -->
+        <div class="map-preview-box">
+          <div class="map-header">
+            <span class="map-header-title">Artie's Express Glendale · Interactive Map</span>
+            <span style="font-size: 0.75rem; color: var(--accent-green); font-weight: 600;">● Live Status: Open</span>
+          </div>
+
+          <div class="map-canvas-area" id="mapCanvas">
+            <div class="map-pin-pulse">
+              <div class="pin-circle">🍔</div>
+              <div class="pin-label">Artie's Express · 238 N Brand Blvd</div>
+            </div>
+          </div>
+
+          <div class="map-controls-row">
+            <div style="font-size: 0.8125rem; color: var(--text-muted);">
+              3 mins from Glendale Galleria & Americana
+            </div>
+            <a href="https://maps.google.com/?q=238+N+Brand+Blvd,+Glendale,+CA+91203" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="btn btn-secondary btn-sm">
+              <span>Open in Google Maps</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Catering Inquiry Section -->
+  <section class="contact-section" id="contact" style="background: #0E1118; border-top: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <span class="section-kicker">Connect With Us</span>
+          <h2 class="section-title">Catering & Community Inquiries</h2>
+          <p class="section-subtitle" style="text-align: left; margin: 0 0 1.5rem 0;">
+            Planning an office lunch in Glendale, a production shoot wrap party, or private gathering? Artie's Express provides custom skewer platters, smash burger sliders, and boxed lunch setups.
+          </p>
+          <div style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem;">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span style="color: var(--accent-green);">✓</span>
+              <span style="font-size: 0.9375rem; color: var(--text-muted);">Individual boxed meals or family-style buffet platters</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span style="color: var(--accent-green);">✓</span>
+              <span style="font-size: 0.9375rem; color: var(--text-muted);">Same-day ordering available for groups under 40</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span style="color: var(--accent-green);">✓</span>
+              <span style="font-size: 0.9375rem; color: var(--text-muted);">Gluten-friendly, dairy-free, and halal options clearly labeled</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-card">
+          <form id="contactForm">
+            <div class="form-group">
+              <label class="form-label" for="contactName">Your Name</label>
+              <input type="text" id="contactName" class="form-input" placeholder="e.g. Rachel Torres" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contactEmail">Email Address</label>
+              <input type="email" id="contactEmail" class="form-input" placeholder="rachel@example.com" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contactInquiryType">Inquiry Type</label>
+              <select id="contactInquiryType" class="form-select">
+                <option value="catering">Office / Event Catering (15+ people)</option>
+                <option value="feedback">Food & Guest Experience Feedback</option>
+                <option value="general">General Question for Management</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contactMessage">Details / Event Date</label>
+              <textarea id="contactMessage" class="form-textarea" placeholder="Tell us about your event, headcount, or inquiry..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              Send Inquiry to Glendale Team
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Artie's <span>Express</span></h3>
+          <p>
+            Glendale’s elevated fast-casual eatery. Fresh flame-grilled skewers, double smash burgers, and artisanal sides made without shortcuts.
+          </p>
+          <div style="display: flex; gap: 0.75rem;">
+            <a href="#menu" class="btn btn-primary btn-sm">Order Online</a>
+            <a href="tel:8185550198" class="btn btn-secondary btn-sm">Call Restaurant</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Menu Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#menu" onclick="filterCategory('burgers')">Smash Burgers</a></li>
+            <li><a href="#menu" onclick="filterCategory('skewers')">Flame Skewers</a></li>
+            <li><a href="#menu" onclick="filterCategory('tenders')">Crispy Tenders</a></li>
+            <li><a href="#menu" onclick="filterCategory('sides')">Hand-Cut Sides</a></li>
+            <li><a href="#menu" onclick="filterCategory('drinks')">House Drinks</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Glendale Hub</h4>
+          <ul class="footer-links">
+            <li><a href="#location">238 N Brand Blvd</a></li>
+            <li><a href="#location">Directions & Parking</a></li>
+            <li><a href="#reviews">Verified Reviews</a></li>
+            <li><a href="#contact">Catering Packages</a></li>
+            <li><a href="#experience">About Artie's</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>VIP Express Club</h4>
+          <p style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+            Sign up for 10% off your next online order & secret weekly chef drops in Glendale.
+          </p>
+          <form id="newsletterForm" style="display: flex; gap: 0.5rem;">
+            <input type="email" id="vipEmail" placeholder="Your email" required class="form-input" style="padding: 0.5rem 0.75rem; font-size: 0.8125rem;">
+            <button type="submit" class="btn btn-primary btn-sm">Join</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 Artie’s Express Glendale. All rights reserved.
+        </div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="#menu" style="color: var(--text-subtle); text-decoration: none;">Privacy Policy</a>
+          <a href="#menu" style="color: var(--text-subtle); text-decoration: none;">Terms of Service</a>
+          <a href="#location" style="color: var(--text-subtle); text-decoration: none;">Glendale, CA 91203</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Slide-Over Cart Drawer -->
+  <div class="cart-drawer-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Order Cart">
+    <div class="cart-header">
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+        <h3>Your Express Order</h3>
+      </div>
+      <button class="cart-close-btn" id="closeCartBtn" aria-label="Close cart">✕</button>
+    </div>
+
+    <div class="cart-body" id="cartItemsList">
+      <!-- Injected by JS -->
+    </div>
+
+    <div class="cart-footer" id="cartFooter">
+      <div class="cart-summary-line">
+        <span>Pickup Location</span>
+        <span style="color: #FFFFFF; font-weight: 600;">238 N Brand Blvd</span>
+      </div>
+      <div class="cart-summary-line">
+        <span>Estimated Ready Time</span>
+        <span style="color: var(--accent-green); font-weight: 600;">12–15 Minutes</span>
+      </div>
+      <div class="cart-summary-line">
+        <span>Subtotal</span>
+        <span class="tabular-nums" id="cartSubtotal">$0.00</span>
+      </div>
+      <div class="cart-summary-line">
+        <span>Estimated CA Tax (10.25%)</span>
+        <span class="tabular-nums" id="cartTax">$0.00</span>
+      </div>
+      <div class="cart-summary-line total">
+        <span>Total Due at Counter</span>
+        <span class="tabular-nums" id="cartTotal">$0.00</span>
+      </div>
+      <button class="btn btn-primary" id="checkoutBtn" style="width: 100%;">
+        Complete Express Order
+      </button>
+    </div>
+  </aside>
+
+  <!-- Item Customization Modal -->
+  <div class="modal-overlay" id="itemModalOverlay">
+    <div class="modal-card" id="itemModalCard">
+      <div class="modal-img-banner">
+        <img id="modalImg" src="" alt="Dish preview">
+        <button class="modal-close-icon" id="closeModalBtn" aria-label="Close dish customization">✕</button>
+      </div>
+      <div class="modal-content">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+          <h3 id="modalTitle" style="font-size: 1.375rem; color: #FFFFFF;">Dish Title</h3>
+          <span id="modalPrice" class="tabular-nums" style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; color: var(--flame-amber);">$0.00</span>
+        </div>
+        <p id="modalDesc" style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1.5rem;">Dish description.</p>
+
+        <!-- Customization Options -->
+        <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 1.5rem;">
+          <div>
+            <label class="form-label" style="margin-bottom: 0.5rem;">Select Your Signature Sauce (Included)</label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;" id="sauceOptions">
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: var(--text-main); background: var(--bg-surface-elevated); padding: 0.6rem; border-radius: 0.5rem; cursor: pointer;">
+                <input type="radio" name="dishSauce" value="Artie's Smoked Secret" checked> Artie's Smoked
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: var(--text-main); background: var(--bg-surface-elevated); padding: 0.6rem; border-radius: 0.5rem; cursor: pointer;">
+                <input type="radio" name="dishSauce" value="Truffle Garlic Aioli"> Truffle Aioli
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: var(--text-main); background: var(--bg-surface-elevated); padding: 0.6rem; border-radius: 0.5rem; cursor: pointer;">
+                <input type="radio" name="dishSauce" value="Habanero Hot Crunch"> Habanero Crunch
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: var(--text-main); background: var(--bg-surface-elevated); padding: 0.6rem; border-radius: 0.5rem; cursor: pointer;">
+                <input type="radio" name="dishSauce" value="House Garlic Toum"> Garlic Toum
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label class="form-label" style="margin-bottom: 0.5rem;">Make It a Glendale Combo?</label>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+              <label style="display: flex; align-items: center; justify-content: space-between; font-size: 0.8125rem; color: var(--text-main); background: var(--bg-surface-elevated); padding: 0.6rem 0.8rem; border-radius: 0.5rem; cursor: pointer;">
+                <span style="display: flex; align-items: center; gap: 0.5rem;">
+                  <input type="checkbox" id="comboFries"> Add Hand-Cut Seasoned Fries
+                </span>
+                <span class="tabular-nums" style="color: var(--flame-amber); font-weight: 600;">+$3.75</span>
+              </label>
+              <label style="display: flex; align-items: center; justify-content: space-between; font-size: 0.8125rem; color: var(--text-main); background: var(--bg-surface-elevated); padding: 0.6rem 0.8rem; border-radius: 0.5rem; cursor: pointer;">
+                <span style="display: flex; align-items: center; gap: 0.5rem;">
+                  <input type="checkbox" id="comboDrink"> Add House Blood Orange Lemonade
+                </span>
+                <span class="tabular-nums" style="color: var(--flame-amber); font-weight: 600;">+$2.95</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" id="modalAddToCartBtn" style="width: 100%;">
+          Add to Express Order
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Success Confirmation Modal -->
+  <div class="modal-overlay" id="orderSuccessOverlay">
+    <div class="modal-card" style="padding: 2.5rem; text-align: center;">
+      <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(16, 185, 129, 0.15); color: var(--accent-green); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1.25rem auto;">
+        ✓
+      </div>
+      <h3 style="font-size: 1.5rem; color: #FFFFFF; margin-bottom: 0.5rem;">Order Sent to Grill!</h3>
+      <p style="font-size: 0.9375rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+        Your order has been transmitted directly to Artie's express kitchen at 238 N Brand Blvd.
+      </p>
+      <div style="background: var(--bg-surface-elevated); border-radius: 0.75rem; padding: 1rem; margin-bottom: 1.5rem; text-align: left;">
+        <div style="display: flex; justify-content: space-between; font-size: 0.875rem; margin-bottom: 0.4rem;">
+          <span style="color: var(--text-subtle);">Order Number:</span>
+          <span style="color: #FFFFFF; font-weight: 700;" id="confirmedOrderNum">#GLN-8492</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.875rem; margin-bottom: 0.4rem;">
+          <span style="color: var(--text-subtle);">Ready Time:</span>
+          <span style="color: var(--accent-green); font-weight: 700;">Ready in ~14 mins</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.875rem;">
+          <span style="color: var(--text-subtle);">Pickup Location:</span>
+          <span style="color: #FFFFFF;">Express Counter, 238 N Brand</span>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="closeSuccessBtn" style="width: 100%;">
+        Done & Return to Menu
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Sticky Bottom Order Bar (<15% mobile viewport height) -->
+  <div class="mobile-sticky-bar" id="mobileStickyBar">
+    <div style="display: flex; flex-direction: column;">
+      <span style="font-size: 0.75rem; color: var(--text-subtle);">Express Pickup · Glendale</span>
+      <span class="tabular-nums" id="stickyBarTotal" style="font-weight: 700; color: #FFFFFF; font-size: 0.9375rem;">0 Items · $0.00</span>
+    </div>
+    <button class="btn btn-primary btn-sm" id="stickyOrderBtn">
+      View Order (<span id="stickyBadgeCount">0</span>)
+    </button>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Vanilla JavaScript Logic -->
+  <script>
+    // Menu Data Set
+    const MENU_ITEMS = [
+      {
+        id: "artie-flame-double",
+        name: "Artie's Flame Double",
+        category: "burgers",
+        price: 13.95,
+        badge: "Chef Signature",
+        isSignature: true,
+        isHalal: true,
+        image: "/src/assets/images/hero_arties_signature_1790782619909.jpg",
+        description: "Two 1/4-lb fresh brisket-chuck smashed patties, aged sharp cheddar, caramelized sweet onions, crisp butter lettuce, and Artie's secret smoked sauce on toasted brioche."
+      },
+      {
+        id: "truffle-mushroom-smash",
+        name: "Truffle Provolone Smash",
+        category: "burgers",
+        price: 14.75,
+        badge: "Best Seller",
+        isSignature: true,
+        isHalal: true,
+        image: "/src/assets/images/dish_truffle_smash_1790782657580.jpg",
+        description: "Double lacy seared patties, melted smoked provolone, sautéed wild crimini mushrooms, white truffle garlic aioli on a glossy artisan potato bun."
+      },
+      {
+        id: "flame-chicken-skewers",
+        name: "Mediterranean Flame Skewers",
+        category: "skewers",
+        price: 15.95,
+        badge: "Glendale Favorite",
+        isSignature: true,
+        isHalal: true,
+        image: "/src/assets/images/dish_flame_skewers_1790782633508.jpg",
+        description: "Marinated free-range chicken breast flame-grilled with blistered bell peppers and red onion. Served with saffron herb rice, grilled flatbread, and whipped garlic toum."
+      },
+      {
+        id: "crispy-buttermilk-tenders",
+        name: "Artie's Hand-Breaded Tenders",
+        category: "tenders",
+        price: 12.95,
+        badge: "Signature Crunch",
+        isSignature: true,
+        isHalal: true,
+        image: "/src/assets/images/dish_crispy_tenders_1790782645425.jpg",
+        description: "Four jumbo buttermilk-soaked chicken tenders fried to order in our spiced crust. Accompanied by house pickles and your choice of 2 scratch dipping sauces."
+      },
+      {
+        id: "spicy-nashville-hot-burger",
+        name: "Firebrand Nashville Hot Bird",
+        category: "tenders",
+        price: 13.50,
+        badge: "Spicy",
+        isSignature: false,
+        isHalal: true,
+        image: "/src/assets/images/dish_crispy_tenders_1790782645425.jpg",
+        description: "Crispy fried chicken thigh dipped in cayenne chili oil, topped with vinegar coleslaw, kosher dill pickles, and comeback sauce on toasted brioche."
+      },
+      {
+        id: "flame-steak-skewer-plate",
+        name: "Charred Angus Steak Skewers",
+        category: "skewers",
+        price: 17.50,
+        badge: "Premium Cut",
+        isSignature: true,
+        isHalal: true,
+        image: "/src/assets/images/dish_flame_skewers_1790782633508.jpg",
+        description: "Rosemary and cracked-pepper marinated Angus ribeye cubes flame-kissed over open grill, with charred heirloom tomatoes and herb chimichurri."
+      },
+      {
+        id: "truffle-parm-fries",
+        name: "Truffle Parmesan Hand-Cut Fries",
+        category: "sides",
+        price: 6.95,
+        badge: "Crowd Pick",
+        isSignature: true,
+        isHalal: false,
+        image: "/src/assets/images/hero_arties_signature_1790782619909.jpg",
+        description: "Double-fried Idaho russet potatoes tossed with fragrant black truffle oil, fresh shaved 24-month parmesan reggiano, and chopped rosemary parsley."
+      },
+      {
+        id: "charred-feta-street-corn",
+        name: "Flame-Roasted Street Corn",
+        category: "sides",
+        price: 5.95,
+        badge: "Seasonal",
+        isSignature: false,
+        isHalal: false,
+        image: "/src/assets/images/dish_flame_skewers_1790782633508.jpg",
+        description: "Sweet California corn charred on the grill, brushed with smoky chipotle lime crema, crumbled sheep's milk feta, and cilantro dust."
+      },
+      {
+        id: "blood-orange-lemonade",
+        name: "Glendale Blood Orange Lemonade",
+        category: "drinks",
+        price: 4.50,
+        badge: "Craft Sip",
+        isSignature: true,
+        isHalal: true,
+        image: "/src/assets/images/hero_arties_signature_1790782619909.jpg",
+        description: "Freshly squeezed Eureka lemons infused with Moro blood orange puree and fresh mint sprigs. Unpasteurized and made in small batches daily."
+      },
+      {
+        id: "roasted-pistachio-shake",
+        name: "California Roasted Pistachio Shake",
+        category: "drinks",
+        price: 6.50,
+        badge: "Local Flavor",
+        isSignature: true,
+        isHalal: true,
+        image: "/src/assets/images/dish_truffle_smash_1790782657580.jpg",
+        description: "Hand-spun Straus Family Creamery vanilla custard blended with pure Central Valley roasted pistachio butter, topped with cardamom whipped cream."
+      }
+    ];
+
+    // State
+    let currentCategory = 'all';
+    let currentDiet = 'all';
+    let cart = [];
+    let activeCustomizingItem = null;
+
+    // Elements
+    const foodGrid = document.getElementById('foodGrid');
+    const cartCountEl = document.getElementById('cartCount');
+    const stickyBadgeCountEl = document.getElementById('stickyBadgeCount');
+    const stickyBarTotalEl = document.getElementById('stickyBarTotal');
+    const cartDrawer = document.getElementById('cartDrawer');
+    const cartOverlay = document.getElementById('cartOverlay');
+    const openCartBtn = document.getElementById('openCartBtn');
+    const closeCartBtn = document.getElementById('closeCartBtn');
+    const cartItemsList = document.getElementById('cartItemsList');
+    const cartSubtotalEl = document.getElementById('cartSubtotal');
+    const cartTaxEl = document.getElementById('cartTax');
+    const cartTotalEl = document.getElementById('cartTotal');
+    const toastContainer = document.getElementById('toastContainer');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+
+    // Mobile nav
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    const mobilePanel = document.getElementById('mobilePanel');
+    const closeMobileNav = document.getElementById('closeMobileNav');
+    const stickyOrderBtn = document.getElementById('stickyOrderBtn');
+
+    // Modals
+    const itemModalOverlay = document.getElementById('itemModalOverlay');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalPrice = document.getElementById('modalPrice');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalAddToCartBtn = document.getElementById('modalAddToCartBtn');
+    const comboFries = document.getElementById('comboFries');
+    const comboDrink = document.getElementById('comboDrink');
+
+    // Order Success Modal
+    const orderSuccessOverlay = document.getElementById('orderSuccessOverlay');
+    const closeSuccessBtn = document.getElementById('closeSuccessBtn');
+    const confirmedOrderNum = document.getElementById('confirmedOrderNum');
+
+    // Render Menu Items
+    function renderMenu() {
+      const filtered = MENU_ITEMS.filter(item => {
+        const matchesCategory = currentCategory === 'all' || item.category === currentCategory;
+        let matchesDiet = true;
+        if (currentDiet === 'signature') matchesDiet = item.isSignature;
+        if (currentDiet === 'halal') matchesDiet = item.isHalal;
+        return matchesCategory && matchesDiet;
+      });
+
+      if (filtered.length === 0) {
+        foodGrid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
+            <p style="font-size: 1.125rem;">No items match this filter.</p>
+            <button onclick="resetFilters()" class="btn btn-secondary btn-sm" style="margin-top: 1rem;">Reset Filters</button>
+          </div>
+        `;
+        return;
+      }
+
+      foodGrid.innerHTML = filtered.map(item => `
+        <article class="food-card" onclick="openItemModal('${item.id}')" tabindex="0" role="button" aria-label="View details for ${item.name}">
+          <div class="food-img-wrap">
+            <img src="${item.image}" alt="${item.name}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80';">
+            <span class="food-badge-overlay ${item.isSignature ? 'signature' : ''}">${item.badge}</span>
+          </div>
+          <div class="food-card-body">
+            <div class="food-meta-row">
+              <span>${item.category}</span>
+              <span aria-hidden="true">·</span>
+              <span>Made To Order</span>
+            </div>
+            <h3 class="food-card-title">${item.name}</h3>
+            <p class="food-card-desc">${item.description}</p>
+            <div class="food-card-footer">
+              <span class="food-card-price tabular-nums">$${item.price.toFixed(2)}</span>
+              <button class="food-add-btn" onclick="event.stopPropagation(); quickAddToCart('${item.id}')">
+                <span>+ Add</span>
+              </button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // Category Tabs Handlers
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentCategory = btn.getAttribute('data-category');
+        renderMenu();
+      });
+    });
+
+    // Dietary Subfilter Handlers
+    document.querySelectorAll('.subfilter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.subfilter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentDiet = btn.getAttribute('data-diet');
+        renderMenu();
+      });
+    });
+
+    window.filterCategory = function(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.category-btn').forEach(b => {
+        if (b.getAttribute('data-category') === cat) b.classList.add('active');
+        else b.classList.remove('active');
+      });
+      renderMenu();
+      document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+    };
+
+    window.resetFilters = function() {
+      currentCategory = 'all';
+      currentDiet = 'all';
+      document.querySelectorAll('.category-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-category') === 'all'));
+      document.querySelectorAll('.subfilter-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-diet') === 'all'));
+      renderMenu();
+    };
+
+    // Item Customization Modal
+    window.openItemModal = function(itemId) {
+      const item = MENU_ITEMS.find(i => i.id === itemId);
+      if (!item) return;
+      activeCustomizingItem = item;
+
+      modalImg.src = item.image;
+      modalImg.alt = item.name;
+      modalTitle.textContent = item.name;
+      modalPrice.textContent = `$${item.price.toFixed(2)}`;
+      modalDesc.textContent = item.description;
+
+      // Reset checkboxes
+      comboFries.checked = false;
+      comboDrink.checked = false;
+
+      itemModalOverlay.classList.add('open');
+    };
+
+    function closeItemModal() {
+      itemModalOverlay.classList.remove('open');
+      activeCustomizingItem = null;
+    }
+
+    closeModalBtn.addEventListener('click', closeItemModal);
+    itemModalOverlay.addEventListener('click', (e) => {
+      if (e.target === itemModalOverlay) closeItemModal();
+    });
+
+    modalAddToCartBtn.addEventListener('click', () => {
+      if (!activeCustomizingItem) return;
+
+      const selectedSauce = document.querySelector('input[name="dishSauce"]:checked')?.value || "Artie's Smoked";
+      let extrasCost = 0;
+      const extras = [];
+
+      if (comboFries.checked) {
+        extrasCost += 3.75;
+        extras.push('Hand-Cut Fries');
+      }
+      if (comboDrink.checked) {
+        extrasCost += 2.95;
+        extras.push('Blood Orange Lemonade');
+      }
+
+      const itemTotal = activeCustomizingItem.price + extrasCost;
+      const cartItemId = `${activeCustomizingItem.id}-${selectedSauce}-${extras.join('-')}`;
+
+      const existing = cart.find(ci => ci.uniqueId === cartItemId);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({
+          uniqueId: cartItemId,
+          baseId: activeCustomizingItem.id,
+          name: activeCustomizingItem.name,
+          price: itemTotal,
+          quantity: 1,
+          details: `${selectedSauce}${extras.length ? ' · ' + extras.join(', ') : ''}`
+        });
+      }
+
+      updateCart();
+      closeItemModal();
+      showToast(`Added ${activeCustomizingItem.name} to order!`);
+    });
+
+    // Quick Add
+    window.quickAddToCart = function(itemId) {
+      const item = MENU_ITEMS.find(i => i.id === itemId);
+      if (!item) return;
+
+      const cartItemId = `${item.id}-default`;
+      const existing = cart.find(ci => ci.uniqueId === cartItemId);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({
+          uniqueId: cartItemId,
+          baseId: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: 1,
+          details: "Chef's Standard Prep"
+        });
+      }
+
+      updateCart();
+      showToast(`Added ${item.name} ($${item.price.toFixed(2)})`);
+    };
+
+    // Update Cart UI
+    function updateCart() {
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      const tax = subtotal * 0.1025; // Glendale, CA Sales Tax ~10.25%
+      const total = subtotal + tax;
+
+      cartCountEl.textContent = totalItems;
+      stickyBadgeCountEl.textContent = totalItems;
+      stickyBarTotalEl.textContent = `${totalItems} ${totalItems === 1 ? 'item' : 'items'} · $${total.toFixed(2)}`;
+
+      cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+      cartTaxEl.textContent = `$${tax.toFixed(2)}`;
+      cartTotalEl.textContent = `$${total.toFixed(2)}`;
+
+      if (cart.length === 0) {
+        cartItemsList.innerHTML = `
+          <div class="cart-empty">
+            <p style="font-size: 1.125rem; color: #FFFFFF; margin-bottom: 0.5rem;">Your order is empty</p>
+            <p style="font-size: 0.875rem;">Explore our flame-grilled burgers and skewers to build your pickup meal.</p>
+          </div>
+        `;
+        checkoutBtn.disabled = true;
+        checkoutBtn.style.opacity = '0.5';
+        checkoutBtn.textContent = 'Add Items to Order';
+      } else {
+        checkoutBtn.disabled = false;
+        checkoutBtn.style.opacity = '1';
+        checkoutBtn.textContent = `Place Express Order · $${total.toFixed(2)}`;
+
+        cartItemsList.innerHTML = cart.map(item => `
+          <div class="cart-item">
+            <div class="cart-item-info">
+              <h4>${item.name}</h4>
+              <p>${item.details}</p>
+              <div style="font-size: 0.8125rem; font-weight: 700; color: var(--flame-amber); margin-top: 0.2rem;" class="tabular-nums">
+                $${(item.price * item.quantity).toFixed(2)}
+              </div>
+            </div>
+            <div class="cart-item-stepper">
+              <button class="step-btn" onclick="updateQty('${item.uniqueId}', -1)" aria-label="Decrease quantity">-</button>
+              <span class="step-qty tabular-nums">${item.quantity}</span>
+              <button class="step-btn" onclick="updateQty('${item.uniqueId}', 1)" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    window.updateQty = function(uniqueId, delta) {
+      const item = cart.find(ci => ci.uniqueId === uniqueId);
+      if (!item) return;
+
+      item.quantity += delta;
+      if (item.quantity <= 0) {
+        cart = cart.filter(ci => ci.uniqueId !== uniqueId);
+      }
+      updateCart();
+    };
+
+    // Open/Close Cart Drawer
+    function toggleCart(open) {
+      if (open) {
+        cartDrawer.classList.add('open');
+        cartOverlay.classList.add('open');
+      } else {
+        cartDrawer.classList.remove('open');
+        cartOverlay.classList.remove('open');
+      }
+    }
+
+    openCartBtn.addEventListener('click', () => toggleCart(true));
+    closeCartBtn.addEventListener('click', () => toggleCart(false));
+    cartOverlay.addEventListener('click', () => toggleCart(false));
+    stickyOrderBtn.addEventListener('click', () => toggleCart(true));
+
+    // Mobile Navigation Drawer
+    function toggleMobileNav(open) {
+      if (open) {
+        mobilePanel.classList.add('active');
+        mobileOverlay.classList.add('active');
+      } else {
+        mobilePanel.classList.remove('active');
+        mobileOverlay.classList.remove('active');
+      }
+    }
+
+    mobileMenuBtn.addEventListener('click', () => toggleMobileNav(true));
+    closeMobileNav.addEventListener('click', () => toggleMobileNav(false));
+    mobileOverlay.addEventListener('click', () => toggleMobileNav(false));
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => toggleMobileNav(false));
+    });
+
+    // Checkout Flow
+    checkoutBtn.addEventListener('click', () => {
+      if (cart.length === 0) return;
+
+      // Close cart and open confirmation
+      toggleCart(false);
+      const randomOrder = 'GLN-' + Math.floor(1000 + Math.random() * 9000);
+      confirmedOrderNum.textContent = '#' + randomOrder;
+      orderSuccessOverlay.classList.add('open');
+
+      // Clear cart
+      cart = [];
+      updateCart();
+    });
+
+    closeSuccessBtn.addEventListener('click', () => {
+      orderSuccessOverlay.classList.remove('open');
+    });
+
+    orderSuccessOverlay.addEventListener('click', (e) => {
+      if (e.target === orderSuccessOverlay) {
+        orderSuccessOverlay.classList.remove('open');
+      }
+    });
+
+    // Toast Notification
+    function showToast(msg) {
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.innerHTML = `
+        <span style="color: var(--flame-amber);">🔥</span>
+        <span>${msg}</span>
+      `;
+      toastContainer.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(10px)';
+        toast.style.transition = 'all 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 2600);
+    }
+
+    // Forms handling
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      showToast('Thank you! Our Glendale GM will contact you within 2 business hours.');
+      e.target.reset();
+    });
+
+    document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      showToast('Welcome to the VIP Express Club! Check your inbox for your 10% code.');
+      e.target.reset();
+    });
+
+    // Highlight today's operating hours
+    function highlightTodayHours() {
+      const days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+      const todayIndex = new Date().getDay();
+      const todayKey = days[todayIndex];
+      const targetRow = document.getElementById('row-' + todayKey);
+      if (targetRow) {
+        targetRow.classList.add('today');
+        const firstCell = targetRow.querySelector('td:first-child');
+        if (firstCell) {
+          firstCell.innerHTML = `${firstCell.textContent} <span style="font-size: 0.75rem; color: var(--accent-green); margin-left: 0.4rem;">(Today)</span>`;
+        }
+      }
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      renderMenu();
+      updateCart();
+      highlightTodayHours();
+    });
+  </script>
+</body>
+</html>
